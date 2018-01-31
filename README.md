@@ -1,8 +1,6 @@
 # WilliamKannCliApp
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/william_kann_cli_app`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem is designed to show information on Berkshire Hathaway, Inc.'s (Warren Buffet)'s current holdings by pulling information from the SEC website for EDGAR (stands for something ridiculous, I'm sure).
 
 ## Installation
 

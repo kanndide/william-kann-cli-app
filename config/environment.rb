@@ -1,4 +1,4 @@
 require 'bundler'
-Bundle.install
+Bundler.require
 
 require_all 'lib'

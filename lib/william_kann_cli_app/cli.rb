@@ -10,6 +10,12 @@ class WilliamKannCliApp::CLI
         user_input = gets.strip
     end
     
+    def display_years
+        EdgarScraper.scrape_years.each do |x|
+            
+        end
+    end
+    
     
     
         

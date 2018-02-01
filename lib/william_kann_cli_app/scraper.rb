@@ -4,11 +4,18 @@ require 'pry'
 
 class EdgarScraper
     
-    def self.scrape_current_holdings(index_url)
-        doc = Nokogiri::HTML(open(index_url))
-        years = doc.css("td a").collect {|x| x.attribute("href").value}
-        years = years - years.select {|x| x.include?("xml")}
+    index_url = "https://www.sec.gov/Archives/edgar/daily-index/"
+    @@doc = Nokogiri::HTML(open(index_url))
+    
+    def self.scrape_years
+        years = @@doc.css("td a").collect {|x| x.attribute("href").value}
+        years -= years.select {|x| x.include?("xml")}
         binding.pry      
+    end
+    
+    def self.scrape_for_last_13fhr(year)
+        index_url << year
+        
     end
     
     

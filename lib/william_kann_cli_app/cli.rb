@@ -4,8 +4,10 @@ class WilliamKannCliApp::CLI
         puts "Welcome to the Warren Buffet (Berkshire Hathaway) holdings thingy!"
     end
     
-    def search
+    def main_menu
         puts "What would you like to see?"
+        puts "Current holdings, or holdings for another year?"
+        user_input = gets.strip
     end
     
     

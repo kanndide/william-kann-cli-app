@@ -4,8 +4,10 @@ require 'pry'
 
 class EdgarScraper
     
-    def self.scrape_index_page(index_url)
+    def self.scrape_current_holdings(index_url)
         doc = Nokogiri::HTML(open(index_url))
+        years = doc.css("td a").collect {|x| x.attribute("href").value}
+        years = years - years.select {|x| x.include?("xml")}
         binding.pry      
     end
     

@@ -12,6 +12,13 @@ class EdgarScraper
         years -= years.select {|x| x.include?("xml")}     
     end
     
+    def self.scrape_for_last_quarter(year)
+        @@index_url << year
+        @@doc = Nokogiri::HTML(open(@@index_url))
+        qtrs = @@doc.css("td a").collect {|x| x.attribute("href").value}
+        qtrs.last
+    end
+    
     def self.scrape_for_last_13fhr(year)
         @@index_url << year
         @@doc = Nokogiri::HTML(open(@@index_url))

@@ -29,6 +29,23 @@ class EdgarScraper
             |x| x.attribute("href").value.include?(".xml")}.collect {
                 |x| x.attribute("href").value}
         
+        files_to_scrape.each do |x|
+            url = index_url.dup << "#{x}"
+            self.scrape_xml(url)
+            
+            binding.pry
+        end   
+    end
+    
+    def self.scrape_xml(url, cik)
+        doc = Nokogiri::HTML(open(url))
+        files = doc.text.split("\n").select {|x| x.include?("https")}
+        matches = files.select {|x| x.include?("#{cik}")}
+        matches.collect {|x| x.strip}
+    end
+    
+    def self.scrape_landing_page(url)
+        
     end
     
 end

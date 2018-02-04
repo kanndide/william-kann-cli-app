@@ -44,6 +44,9 @@ class EdgarScraper
     
     def self.scrape_landing_page(url)
         doc = Nokogiri::HTML(open(url))
+        information = doc.css("td a").select {
+            |x| x.text.include?("form13fInfoTable.html")}.collect {
+                |x| x.attribute("href").value}
         binding.pry
     end
     
@@ -51,3 +54,4 @@ end
 
 
 EdgarScraper.scrape_landing_page("https://www.sec.gov/Archives/edgar/data/1067983/000095012317010896/0000950123-17-010896-index.htm")
+ 

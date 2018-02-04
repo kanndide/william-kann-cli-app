@@ -32,8 +32,6 @@ class EdgarScraper
         files_to_scrape.each do |x|
             url = index_url.dup << "#{x}"
             self.scrape_xml(url)
-            
-            binding.pry
         end   
     end
     
@@ -45,9 +43,11 @@ class EdgarScraper
     end
     
     def self.scrape_landing_page(url)
-        
+        doc = Nokogiri::HTML(open(url))
+        binding.pry
     end
     
 end
 
-EdgarScraper.scrape_for_13fhr("2017", "qtr4")
+
+EdgarScraper.scrape_landing_page("https://www.sec.gov/Archives/edgar/data/1067983/000095012317010896/0000950123-17-010896-index.htm")

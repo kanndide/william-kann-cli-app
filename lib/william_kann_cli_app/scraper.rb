@@ -32,9 +32,10 @@ class EdgarScraper
             |x| x.attribute("href").value.include?(".xml")}.collect {
                 |x| x.attribute("href").value}
         
-        files_to_scrape.each do |x|
+        files_to_scrape.collect do |x|
             url = index_url.dup << "#{x}"
-            binding.pry
+            self.scrape_landing_page(self.scrape_xml(url, BH_CIK).join) if      self.scrape_xml(url, BH_CIK) != [] &&
+                self.scrape_landing_page(self.scrape_xml(url, BH_CIK).join) != BASE_URL
         end   
     end
     
@@ -56,7 +57,7 @@ class EdgarScraper
 end
 
 
-EdgarScraper.scrape_for_13fhr("2017", "qtr4")
+puts EdgarScraper.scrape_for_13fhr("2017", "qtr4")
 #puts EdgarScraper.scrape_xml("https://www.sec.gov/Archives/edgar/full-index/2017/QTR4/sitemap.quarterlyindex4.xml", "1067983").join
 #EdgarScraper.scrape_landing_page("https://www.sec.gov/Archives/edgar/data/1067983/000095012317010896/0000950123-17-010896-index.htm")
  

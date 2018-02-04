@@ -5,10 +5,13 @@ require 'pry'
 class EdgarScraper
     
     INDEX_URL = "https://www.sec.gov/Archives/edgar/full-index/"
-    @@doc = Nokogiri::HTML(open(INDEX_URL))
+    DOC = Nokogiri::HTML(open(INDEX_URL))
+    BH_CIK = "1067983"
+    BASE_URL = "https://www.sec.gov"
+    
     
     def self.scrape_years
-        years = @@doc.css("td a").collect {|x| x.attribute("href").value}
+        years = DOC.css("td a").collect {|x| x.attribute("href").value}
         years -= years.select {|x| x.include?("xml")}     
     end
     
@@ -31,7 +34,7 @@ class EdgarScraper
         
         files_to_scrape.each do |x|
             url = index_url.dup << "#{x}"
-            self.scrape_xml(url)
+            binding.pry
         end   
     end
     
@@ -47,11 +50,13 @@ class EdgarScraper
         information = doc.css("td a").select {
             |x| x.text.include?("form13fInfoTable.html")}.collect {
                 |x| x.attribute("href").value}
-        binding.pry
+        BASE_URL.dup << information.join
     end
     
 end
 
 
-EdgarScraper.scrape_landing_page("https://www.sec.gov/Archives/edgar/data/1067983/000095012317010896/0000950123-17-010896-index.htm")
+EdgarScraper.scrape_for_13fhr("2017", "qtr4")
+#puts EdgarScraper.scrape_xml("https://www.sec.gov/Archives/edgar/full-index/2017/QTR4/sitemap.quarterlyindex4.xml", "1067983").join
+#EdgarScraper.scrape_landing_page("https://www.sec.gov/Archives/edgar/data/1067983/000095012317010896/0000950123-17-010896-index.htm")
  

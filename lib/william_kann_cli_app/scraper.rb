@@ -54,16 +54,21 @@ class EdgarScraper
         BASE_URL.dup << information.join
     end
     
-    self.hash_13fhr(year, qtr)
-        doc = Nokogiri::HTML(open(self.scrape_for_13fhr(year, qtr).strip))
-        13fhr_array = doc.css("tr").collect {|x| x.css("td").text}
+    def self.hash_13fhr(year, qtr)
+        doc = Nokogiri::HTML(open(self.scrape_for_13fhr(year, qtr).join.strip))
+        form_array = doc.css("tbody[1] tr").collect do |x|
+                        x.css("td").collect do |x|  
+                            "#{x.text},"    
+                        end  
+                    end
+        for_array.drop(3) #something goes here
         binding.pry
     end
     
 end
 
 
-#puts EdgarScraper.scrape_for_13fhr("2017", "qtr4")
+EdgarScraper.hash_13fhr("2017", "qtr4")
 #puts EdgarScraper.scrape_xml("https://www.sec.gov/Archives/edgar/full-index/2017/QTR4/sitemap.quarterlyindex4.xml", "1067983").join
 #EdgarScraper.scrape_landing_page("https://www.sec.gov/Archives/edgar/data/1067983/000095012317010896/0000950123-17-010896-index.htm")
  

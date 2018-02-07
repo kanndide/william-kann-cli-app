@@ -75,7 +75,8 @@ class EdgarScraper
                     :shares => x[4].gsub(",", "").to_i
                     }
             end
-        end  
+        end 
+        hash
     end
     
 end

@@ -57,24 +57,31 @@ class EdgarScraper
     def self.hash_13fhr(year, qtr)
         doc = Nokogiri::HTML(open(self.scrape_for_13fhr(year, qtr).join))
         hash = {}
-        form_array = doc.css("tbody[1] tr").collect do |x|
+        form_array_raw = doc.css("tbody[1] tr").collect do |x|
                         x.css("td").collect do |x|  
                             x.text    
                         end  
                     end
-        form_array.drop(3).collect do |x|
-            hash[x[0].gsub(" ", "_").tr("&", "").to_sym] = {
-                :shares => x[4]
-                }
-        end
-            
-        binding.pry
+        form_array = form_array_raw.drop(3).each do |x|
+            x[0].gsub!(" ", "_")
+            x[0].gsub!("&", "AND") if x[0].include?("&")
+            end
+        
+        form_array.collect do |x|
+            if hash.include?(x[0].to_sym)
+                hash[x[0].to_sym][:shares] += x[4].tr(",", "").to_i
+            else
+                hash[x[0].to_sym] = {
+                    :shares => x[4].gsub(",", "").to_i
+                    }
+            end
+        end  
     end
     
 end
 
 
-EdgarScraper.hash_13fhr("2016", "qtr4")
+#EdgarScraper.hash_13fhr("2016", "qtr4")
 #puts EdgarScraper.scrape_xml("https://www.sec.gov/Archives/edgar/full-index/2017/QTR4/sitemap.quarterlyindex4.xml", "1067983").join
 #EdgarScraper.scrape_landing_page("https://www.sec.gov/Archives/edgar/data/1067983/000095012317010896/0000950123-17-010896-index.htm")
  

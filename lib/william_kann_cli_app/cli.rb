@@ -2,6 +2,7 @@ class WilliamKannCliApp::CLI
     
     def call
         puts "Welcome to the Warren Buffet (Berkshire Hathaway) holdings thingy!"
+        main_menu
     end
     
     def main_menu

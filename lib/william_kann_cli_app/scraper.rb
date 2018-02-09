@@ -80,9 +80,3 @@ class EdgarScraper
     end
     
 end
-
-
-#EdgarScraper.hash_13fhr("2016", "qtr4")
-#puts EdgarScraper.scrape_xml("https://www.sec.gov/Archives/edgar/full-index/2017/QTR4/sitemap.quarterlyindex4.xml", "1067983").join
-#EdgarScraper.scrape_landing_page("https://www.sec.gov/Archives/edgar/data/1067983/000095012317010896/0000950123-17-010896-index.htm")
- 

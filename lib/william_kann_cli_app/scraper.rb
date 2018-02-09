@@ -56,7 +56,7 @@ class EdgarScraper
     
     def self.hash_13fhr(year, qtr)
         doc = Nokogiri::HTML(open(self.scrape_for_13fhr(year, qtr).join))
-        hash = {}
+        hash = {:year => year, :qtr => qtr.upcase}
         form_array_raw = doc.css("tbody[1] tr").collect do |x|
                         x.css("td").collect do |x|  
                             x.text    

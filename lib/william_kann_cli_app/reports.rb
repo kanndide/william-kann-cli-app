@@ -2,8 +2,9 @@ class Reports
     
     attr_accessor :year, :qtr, :investor, :companies
     
-    def initialize(year, qtr)
+    def initialize(year = nil, qtr = nil)
         @companies = %w[]
+        
     end
     
     def self.create_from_hash(hash)

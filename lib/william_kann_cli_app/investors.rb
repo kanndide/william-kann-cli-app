@@ -8,4 +8,10 @@ class Investors
         @holdings = []
     end
     
+    def self.create_from_hash(hash)
+        hash.each do |key, value|
+            Companies.new(key.to_s)
+        end
+    end
+    
 end

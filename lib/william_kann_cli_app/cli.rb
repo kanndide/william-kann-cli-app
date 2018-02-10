@@ -1,5 +1,7 @@
 class WilliamKannCliApp::CLI
     
+#    BH = Investors.new("Berkshire Hathaway Inc", "1067983")
+    
     def call
         puts "Welcome to the Warren Buffet (Berkshire Hathaway) holdings thingy!"
         main_menu

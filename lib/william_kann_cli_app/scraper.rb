@@ -6,7 +6,7 @@ class EdgarScraper
     
     INDEX_URL = "https://www.sec.gov/Archives/edgar/full-index/"
     DOC = Nokogiri::HTML(open(INDEX_URL))
-#    BH = Investors.new("Berkshire Hathaway Inc", "1067983")
+    BH = Investors.new("Berkshire Hathaway Inc", "1067983")
 #    BH_CIK = "1067983"
     BASE_URL = "https://www.sec.gov"
     
@@ -78,7 +78,7 @@ class EdgarScraper
             end
         end 
         hash
-        binding.pry
+        
     end
     
 end

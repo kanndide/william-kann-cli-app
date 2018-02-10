@@ -6,7 +6,7 @@ class Companies
     
     @@all = []
     
-    def initialize(name)
+    def initialize(name, cik = nil)
         @name = name
         @@all << self
     end

@@ -1,6 +1,4 @@
-require 'nokogiri'
-require 'open-uri'
-require 'pry'
+require_relative './config/enviroment.rb'
 
 class EdgarScraper
     
@@ -57,7 +55,7 @@ class EdgarScraper
     
     def self.hash_13fhr(year, qtr)
         doc = Nokogiri::HTML(open(self.scrape_for_13fhr(year, qtr).join))
-        hash = {:year => year, :qtr => qtr.upcase, :investor = > BH.name, :cik => BH.cik}
+        hash = {:year => year, :qtr => qtr.upcase, :investor => BH.name, :cik => BH.cik}
         form_array_raw = doc.css("tbody[1] tr").collect do |x|
                         x.css("td").collect do |x|  
                             x.text    
@@ -81,3 +79,5 @@ class EdgarScraper
     end
     
 end
+
+EdgarScraper.hash_13fhr("2017", "qtr4")

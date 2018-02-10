@@ -2,6 +2,8 @@
 
 This gem is designed to show information on Berkshire Hathaway, Inc.'s (Warren Buffet)'s current holdings by pulling information from the SEC website for EDGAR (stands for something ridiculous, I'm sure).
 
+[![Build Status](https://travis-ci.org/kanndide/william-kann-cli-app.svg?branch=master)](https://travis-ci.org/kanndide/william-kann-cli-app)
+
 ## Installation
 
 Add this line to your application's Gemfile:

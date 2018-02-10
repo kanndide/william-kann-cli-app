@@ -1,6 +1,8 @@
 require 'nokogiri'
 require 'open-uri'
 require 'pry'
+require_relative 'concerns/findable'
+require_relative 'investors'
 
 class EdgarScraper
     
@@ -78,7 +80,7 @@ class EdgarScraper
             end
         end 
         hash
-        
+        binding.pry
     end
     
 end

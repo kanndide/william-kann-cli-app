@@ -35,8 +35,8 @@ class EdgarScraper
         
         files_to_scrape.collect do |x|
             url = index_url.dup << "#{x}"
-            self.scrape_landing_page(self.scrape_xml(url, BH_CIK).join) if      self.scrape_xml(url, BH_CIK) != [] &&
-                self.scrape_landing_page(self.scrape_xml(url, BH_CIK).join) != BASE_URL
+            self.scrape_landing_page(self.scrape_xml(url, BH.cik).join) if      self.scrape_xml(url, BH.cik) != [] &&
+                self.scrape_landing_page(self.scrape_xml(url, BH.cik).join) != BASE_URL
         end   
     end
     
@@ -57,7 +57,7 @@ class EdgarScraper
     
     def self.hash_13fhr(year, qtr)
         doc = Nokogiri::HTML(open(self.scrape_for_13fhr(year, qtr).join))
-        hash = {:year => year, :qtr => qtr.upcase}
+        hash = {:year => year, :qtr => qtr.upcase, :investor = > BH.name, :cik => BH.cik}
         form_array_raw = doc.css("tbody[1] tr").collect do |x|
                         x.css("td").collect do |x|  
                             x.text    

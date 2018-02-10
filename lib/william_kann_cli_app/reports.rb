@@ -11,6 +11,9 @@ class Reports
         hash.each do |key, value|
             self.year = value if key = :year
             self.qtr = value if key = :qtr
+            investor_name = value if key = :investor
+            investor_cik = value if key = :cik
+            self.investor = Investor.find_or_create_by_name(investor_name, investor_cik)
             Companies.find_or_create_by_name(key.to_s)
                 
         end

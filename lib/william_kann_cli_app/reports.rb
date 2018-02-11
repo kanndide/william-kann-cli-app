@@ -27,7 +27,7 @@ class Reports
         puts "The Securities and Exchange Commission has not necessarily reviewed the information in this filing and has not determined if it is accurate and complete. The reader should not assume that the information is accurate and complete."
         object.companies.each do |x|
             x.each do |key, value|
-                puts "#{key.name} - #{value}"
+                puts "#{key.name.gsub("_", " ").split.map(&:capitalize).join(' ')} - #{value}"
             end
         end
     end

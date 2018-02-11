@@ -3,7 +3,7 @@ RSpec.describe WilliamKannCliApp do
     expect(WilliamKannCliApp::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "has a call method" do
+    expect(WilliamKannCliApp::CLI.new.call).not_to be nil
   end
 end

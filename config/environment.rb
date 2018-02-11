@@ -1,4 +1,5 @@
 require 'bundler'
-Bundler.require
+Bundler.require(:default)
 
+require 'open-uri'
 require_all 'lib'

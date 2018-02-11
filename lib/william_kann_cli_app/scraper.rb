@@ -1,9 +1,3 @@
-require 'nokogiri'
-require 'open-uri'
-require 'pry'
-require_relative 'concerns/findable'
-require_relative 'investors'
-
 class EdgarScraper
     
     INDEX_URL = "https://www.sec.gov/Archives/edgar/full-index/"
@@ -36,8 +30,7 @@ class EdgarScraper
         
         files_to_scrape.collect do |x|
             url = index_url.dup << "#{x}"
-            self.scrape_landing_page(self.scrape_xml(url, BH.cik).join) if      self.scrape_xml(url, BH.cik) != [] &&
-                self.scrape_landing_page(self.scrape_xml(url, BH.cik).join) != BASE_URL
+            self.scrape_landing_page(self.scrape_xml(url, BH.cik).join) if self.scrape_xml(url, BH.cik) != [] && self.scrape_landing_page(self.scrape_xml(url, BH.cik).join) != BASE_URL
         end   
     end
     

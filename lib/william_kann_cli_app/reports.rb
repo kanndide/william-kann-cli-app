@@ -3,7 +3,7 @@ class Reports
     attr_accessor :year, :qtr, :investor, :companies
     
     def initialize(year = nil, qtr = nil)
-        @companies = %w{}
+        @companies = %w[]
         
     end
     
@@ -21,7 +21,7 @@ class Reports
     end
     
     def print_report(object)
-        puts "#{object.investor} holdings as of #{object.year}, #{object.qtr.upcase.}"
+        puts "#{object.investor} holdings as of #{object.year}, #{object.qtr.upcase}"
         puts "The Securities and Exchange Commission has not necessarily reviewed the information in this filing and has not determined     if it is accurate and complete.
         The reader should not assume that the information is accurate and complete."
         object.companies.each do |key, value|

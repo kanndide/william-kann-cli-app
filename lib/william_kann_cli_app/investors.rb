@@ -6,9 +6,9 @@ class Investors
     
     @@all = []
     
-    def initialize(name, cik)
+    def initialize(name, cik = nil)
         @name = name
-        @cik = cik
+        @cik = cik if cik != nil
         @@all << self
     end
     

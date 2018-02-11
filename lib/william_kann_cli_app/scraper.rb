@@ -72,11 +72,9 @@ class EdgarScraper
         
         form_array.collect do |x|
             if hash.include?(x[0].to_sym)
-                hash[x[0].to_sym][:shares] += x[4].tr(",", "").to_i
+                hash[x[0].to_sym] += x[4].tr(",", "").to_i
             else
-                hash[x[0].to_sym] = {
-                    :shares => x[4].gsub(",", "").to_i
-                    }
+                hash[x[0].to_sym] = x[4].gsub(",", "").to_i
             end
         end 
         hash

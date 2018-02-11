@@ -13,7 +13,7 @@ module WilliamKannCliApp
             puts "Current holdings, or holdings for another year? Type 'current holdings' or 'different year'."
             user_input = gets.strip
             if user_input == "Current holdings" || user_input == "current holdings" || user_input == "Current Holdings"
-                object = Reports.new(EdgarScraper.hash_13fhr("2017", "qtr4"))
+                object = Reports.new(EdgarScraper.hash_13fhr("2017", "qtr3"))
                 Reports.print_report(object)
             elsif user_input == "Different year" || user_input == "different year" || user_input == "Different year"
                 choose_your_own

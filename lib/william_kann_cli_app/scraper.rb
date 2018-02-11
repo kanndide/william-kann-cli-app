@@ -50,7 +50,18 @@ class EdgarScraper
     end
     
     def self.hash_13fhr(year, qtr)
-        doc = Nokogiri::HTML(open(self.scrape_for_13fhr(year, qtr).join))
+        url = nil
+        if self.scrape_for_13fhr(year, qtr).join == ""
+            begin
+                raise InvestorsApp::Errors::DataNotFoundError
+            rescue InvestorsApp::Errors::DataNotFoundError => error
+                error.message
+            end
+            WilliamKannCliApp::CLI.new.call
+        else
+            url = self.scrape_for_13fhr(year, qtr).join
+        end
+        doc = Nokogiri::HTML(open(url))
         hash = {:year => year, :qtr => qtr.upcase, :investor => BH.name, :cik => BH.cik}
         form_array_raw = doc.css("tbody[1] tr").collect do |x|
                         x.css("td").collect do |x|  

@@ -8,7 +8,7 @@ class EdgarScraper
     
     def self.scrape_years
         years = DOC.css("td a").collect {|x| x.attribute("href").value}
-        years -= years.select {|x| x.include?("xml")}     
+        years -= years.select {|x| x.include?(".")}     
     end
     
     def self.scrape_for_qtr(year)
@@ -55,9 +55,8 @@ class EdgarScraper
             begin
                 raise InvestorsApp::Errors::DataNotFoundError
             rescue InvestorsApp::Errors::DataNotFoundError => error
-                error.message
+                error.message   
             end
-            WilliamKannCliApp::CLI.new.call
         else
             url = self.scrape_for_13fhr(year, qtr).join
         end

@@ -20,6 +20,7 @@ class Reports
                     }
             end
         end
+        self.investor.reports << self
     end
     
     def self.print_report(object)

@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-Using this gem is fairly simple. Run it with bin/investors_cli. It basically walks you through the process but all you need to know is the year and quarter that you want to see information on. Bear in mind that 13F-HR reports aren't going to be in every quarter and that some of the older ones aren't in the correct format for this app at this time. Hopefully that will change in the future. Then again, hopefully this entire app will change to a more efficient beast all together.
+Using this gem is fairly simple. Run it with bin/investors_cli to use the console. It basically walks you through the process but all you need to know is the year and quarter that you want to see information on. Bear in mind that 13F-HR reports aren't going to be in every quarter and that some of the older ones aren't in the correct format for this app at this time. Hopefully that will change in the future. Then again, hopefully this entire app will change to a more efficient beast all together.
 
 ## Development
 

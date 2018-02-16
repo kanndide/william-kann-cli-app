@@ -17,6 +17,8 @@ module WilliamKannCliApp
                 Reports.print_report(object)
             elsif user_input == "Different year" || user_input == "different year" || user_input == "Different year"
                 choose_your_own
+            elsif user_input == "exit"
+                exit
             end
             restart
         end
@@ -58,7 +60,7 @@ module WilliamKannCliApp
         end  
         
         def self.error_restart
-            puts "Would you like to try another year?"
+            puts "Would you like to try again?"
             user_input = gets.strip
             if user_input == "yes"
                 self.new.call

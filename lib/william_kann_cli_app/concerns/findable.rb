@@ -12,5 +12,6 @@ module Concerns
                 find_by_name(name, cik)
             end
         end
+        
     end
 end 

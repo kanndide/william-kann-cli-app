@@ -2,6 +2,8 @@ class Reports
     
     attr_accessor :year, :qtr, :investor, :companies
     
+    @@all = %w[]
+    
     def initialize(hash)
         @companies = %w{}
         investor_name = nil
@@ -21,6 +23,7 @@ class Reports
             end
         end
         self.investor.reports << self
+        @@all << self
     end
     
     def self.print_report(object)
@@ -31,6 +34,14 @@ class Reports
                 puts "#{key.name.gsub("_", " ").split.map(&:capitalize).join(' ')} - #{value}"
             end
         end
+    end
+    
+    def self.find_by_year_and_qtr(year, qtr)
+            self.all.find {|x| x.year == year && x.qtr == qtr.upcase}
+        end
+    
+    def self.all
+        @@all
     end
     
 end

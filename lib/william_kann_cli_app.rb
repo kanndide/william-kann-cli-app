@@ -13,8 +13,7 @@ module WilliamKannCliApp
             puts "Current holdings, or holdings for another year? Type 'current holdings' or 'different year'."
             user_input = gets.strip
             if user_input == "Current holdings" || user_input == "current holdings" || user_input == "Current Holdings"
-                object = Reports.new(EdgarScraper.hash_13fhr("2017", "qtr4"))
-                Reports.print_report(object)
+                find_or_create_and_print("2017", "qtr4")
             elsif user_input == "Different year" || user_input == "different year" || user_input == "Different year"
                 choose_your_own
             elsif user_input == "exit"
@@ -45,8 +44,7 @@ module WilliamKannCliApp
             display_qtr(year)
             puts "Please choose a quarter."
             qtr = gets.strip
-            object = Reports.new(EdgarScraper.hash_13fhr(year, qtr))
-            Reports.print_report(object)
+            find_or_create_and_print(year, qtr)
         end
     
         def restart
@@ -66,6 +64,15 @@ module WilliamKannCliApp
                 self.new.call
             else
                 exit
+            end
+        end
+        
+        def find_or_create_and_print(year, qtr)
+            if Reports.find_by_year_and_qtr(year, qtr) == nil
+                object = Reports.new(EdgarScraper.hash_13fhr(year, qtr))
+                Reports.print_report(object)
+            else
+                Reports.print_report(Reports.find_by_year_and_qtr(year, qtr))
             end
         end
         
